@@ -1,5 +1,6 @@
 package entity;
 
+import DTO.OrderDTO;
 import lombok.Builder;
 import lombok.Data;
 
@@ -25,6 +26,14 @@ public class Order {
 
     @Column(name="date", unique=true, nullable=false)
     private LocalTime date;
+
+    public static Order toEntity(OrderDTO orderDTO){
+        return  Order.builder()
+                .id(orderDTO.getId())
+                .articleList(orderDTO.getArticleList())
+                .date(orderDTO.getDate())
+                .build();
+    }
 
     public Order() {
     }
