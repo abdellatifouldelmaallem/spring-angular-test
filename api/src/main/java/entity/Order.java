@@ -1,9 +1,9 @@
-package model;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+package entity;
 
 import javax.persistence.*;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -14,10 +14,9 @@ public class Order {
     @Column(name="Reference", unique=true, nullable=false,updatable = false)
     private String id = UUID.randomUUID().toString();
 
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
-    private Article articles;
+    @OneToMany(targetEntity = Article.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "Order_fk", referencedColumnName = "id")
+    private List<Article> articleList;
 
     @Column(name="date", unique=true, nullable=false)
     private LocalTime date;
@@ -25,14 +24,14 @@ public class Order {
     public Order() {
     }
 
-    public Order(Article articles, LocalTime date) {
-        this.articles = articles;
+    public Order(List<Article> articleList, LocalTime date) {
+        this.articleList = articleList;
         this.date = date;
     }
 
-    public Order(String id, Article articles, LocalTime date) {
+    public Order(String id, List<Article> articleList, LocalTime date) {
         this.id = id;
-        this.articles = articles;
+        this.articleList = articleList;
         this.date = date;
     }
 
@@ -44,12 +43,12 @@ public class Order {
         this.id = id;
     }
 
-    public Article getArticles() {
-        return articles;
+    public List<Article> getArticleList() {
+        return articleList;
     }
 
-    public void setArticles(Article articles) {
-        this.articles = articles;
+    public void setArticleList(List<Article> articleList) {
+        this.articleList = articleList;
     }
 
     public LocalTime getDate() {
@@ -64,7 +63,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id='" + id + '\'' +
-                ", articles=" + articles +
+                ", articleList=" + articleList +
                 ", date=" + date +
                 '}';
     }
