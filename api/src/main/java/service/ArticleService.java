@@ -15,7 +15,8 @@ public class ArticleService {
     private ArticleRepository articleRepository;
 
     public ArticleDTO getArticleById( Integer id){
-        return ArticleDTO.toDto(articleRepository.getById(id));
+        Optional<Article> articleDTOOptional = articleRepository.findById(id);
+        return ArticleDTO.toDto(articleDTOOptional.get());
     }
 
     public List<ArticleDTO> getAllArticles(){
