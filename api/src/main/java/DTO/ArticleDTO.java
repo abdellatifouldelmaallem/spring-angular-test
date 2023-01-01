@@ -10,12 +10,14 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Optional;
 
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class ArticleDTO {
+
     private Integer id;
     private String name;
     private Double price;
