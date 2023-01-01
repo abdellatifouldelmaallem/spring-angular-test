@@ -1,13 +1,18 @@
 package entity;
 
+import lombok.Builder;
+import lombok.Data;
+
 import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Entity
 @Table(name = "Order")
+@Entity
+@Data
+@Builder
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
