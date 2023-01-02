@@ -1,14 +1,18 @@
 package entity;
 
 import DTO.ArticleDTO;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Table(name = "Article")
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class Article {
     @Id
@@ -31,61 +35,10 @@ public class Article {
                 .build();
     }
 
-    public Article() {
-    }
-
-    public Article(Integer id, String name, Double price, String picture) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.picture = picture;
-    }
-
     public Article(String name, Double price, String picture) {
         this.name = name;
         this.price = price;
         this.picture = picture;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
-
-    @Override
-    public String toString() {
-        return "Article{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", picture='" + picture + '\'' +
-                '}';
-    }
 }

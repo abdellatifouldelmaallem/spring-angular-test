@@ -1,8 +1,10 @@
 package entity;
 
 import DTO.OrderDTO;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalTime;
@@ -13,6 +15,8 @@ import java.util.UUID;
 @Table(name = "Order")
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class Order {
     @Id
@@ -35,50 +39,8 @@ public class Order {
                 .build();
     }
 
-    public Order() {
-    }
-
     public Order(List<Article> articleList, LocalTime date) {
         this.articleList = articleList;
         this.date = date;
-    }
-
-    public Order(String id, List<Article> articleList, LocalTime date) {
-        this.id = id;
-        this.articleList = articleList;
-        this.date = date;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public List<Article> getArticleList() {
-        return articleList;
-    }
-
-    public void setArticleList(List<Article> articleList) {
-        this.articleList = articleList;
-    }
-
-    public LocalTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalTime date) {
-        this.date = date;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id='" + id + '\'' +
-                ", articleList=" + articleList +
-                ", date=" + date +
-                '}';
     }
 }
